@@ -25,6 +25,10 @@ https://github.com/qbcore-framework/dpemotes
 
 https://github.com/qbcore-framework/qb-menu
 
+https://github.com/qbcore-framework/progressbar
+
+https://github.com/Nathan-FiveM/qb-lock
+
 --===========================================--
 
 this is set up for legacy fuel via the boat rental, you can easily change it in the fishing client main. its 1 line  CTRL F and search LeagcyFuel.
