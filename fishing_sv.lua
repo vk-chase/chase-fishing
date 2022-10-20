@@ -186,6 +186,19 @@ RegisterNetEvent('chase-fishing:server:BuyBaits', function(data)
     end
 end)
 
+RegisterNetEvent('chase-fishing:server:BuyAanchor', function(data)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(source)
+    local quantity = 1
+    local cash = 'bank'
+    local price = 1800
+    local Item = 'anchor'
+
+    if Player.Functions.AddItem(Item, quantity) then
+        Player.Functions.RemoveMoney(cash, price)
+	TriggerClientEvent('QBCore:Notify', src, 'You bought an Anchor!.', 'primary')		
+    end
+end)
 
 RegisterNetEvent('chase-fishing:server:SellFishies', function()
     local src = source
