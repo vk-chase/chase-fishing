@@ -14,6 +14,7 @@ etc etc etc
 lots of stuffs !
 
 --===========================================--
+
 DEPPIES:
 
 https://github.com/qbcore-framework/qb-core
@@ -21,6 +22,8 @@ https://github.com/qbcore-framework/qb-core
 https://github.com/qbcore-framework/qb-target
 
 https://github.com/qbcore-framework/dpemotes
+
+https://github.com/qbcore-framework/qb-menu
 
 --===========================================--
 
