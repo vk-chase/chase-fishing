@@ -17,6 +17,12 @@ RegisterNetEvent('chase-fishing:client:BuyBaits', function(data)
     TriggerEvent('chase-fishing:client:ShopMenu')
 end)
 
+RegisterNetEvent('chase-fishing:client:anchor', function(data)
+    TriggerServerEvent('chase-fishing:server:BuyAanchor')
+    TriggerEvent('chase-fishing:client:ShopMenu')
+end)
+
+
 RegisterNetEvent('chase-fishing:client:RentBoat', function(data)
     local vehicle = 'dinghy'
     local coords = vector4(-1600.0, 5211.65, 0.15, 115.64)
