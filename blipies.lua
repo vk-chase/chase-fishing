@@ -1,0 +1,13 @@
+local QBCore = exports['qb-core']:GetCoreObject()
+
+Citizen.CreateThread(function()
+    local blip = AddBlipForCoord(-1592.64, 5202.2, 4.31)
+	SetBlipSprite(blip, 88)
+	SetBlipDisplay(blip, 4)
+	SetBlipScale(blip, 0.7)
+	SetBlipAsShortRange(blip, true)
+	SetBlipColour(blip, 37) 
+	BeginTextCommandSetBlipName("STRING")
+	AddTextComponentSubstringPlayerName("Fish Shop")
+    EndTextCommandSetBlipName(blip)
+end)
