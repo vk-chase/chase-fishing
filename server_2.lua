@@ -694,3 +694,5 @@ RegisterNetEvent('chasefishingloot:server:afterfishingloot', function()
         TriggerClientEvent('inventory:client:ItemBox', source, QBCore.Shared.Items['metaltrash'], "add")
     end
 end)
+
+
