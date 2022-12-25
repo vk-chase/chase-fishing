@@ -52,6 +52,7 @@ QBCore.Functions.CreateUseableItem("fishingrod", function(source, item)
     	local Player = QBCore.Functions.GetPlayer(source)
 	if Player.Functions.GetItemBySlot(item.slot) ~= nil then
         TriggerClientEvent('chase-fishing:client:StartFishing', source)
+        --TriggerClientEvent('chase-fishing:client:ExploitBlocker', source)
     end
 end)
 
@@ -351,6 +352,26 @@ end)
 
 
 
+RegisterNetEvent('chase-fishing:server:removebait', function(data)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    local luck = math.random(1, 100)
+    local itemFound = true
+    local itemCount = 1
+    if itemFound then
+        for i = 1, itemCount, 1 do
+      	    if luck >= 60 and luck <= 100 then
+				Player.Functions.RemoveItem('fishingbait', 1)
+				TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['halibut'], "remove", 1)
+				TriggerClientEvent('QBCore:Notify', src, "You lost your bait", "error")
+		    	elseif luck >= 1 and luck <= 60 then
+				TriggerClientEvent('QBCore:Notify', src, "You managed to save some bait", "success")
+            end
+            Citizen.Wait(500)
+        end
+    end
+end)
+
 RegisterNetEvent('chase-fishing:server:BuyRod', function(data)
     local src = source
     local Player = QBCore.Functions.GetPlayer(source)
@@ -375,7 +396,7 @@ RegisterNetEvent('chase-fishing:server:fishicebox', function(data)
 
     if Player.Functions.AddItem(Item, quantity) then
         Player.Functions.RemoveMoney(cash, price)
-	TriggerClientEvent('QBCore:Notify', src, 'You buy a fish icebox.', 'primary')
+	TriggerClientEvent('QBCore:Notify', src, 'You bought a fish icebox.', 'primary')
     end
 end)
 
@@ -388,7 +409,7 @@ RegisterNetEvent('chase-fishing:server:anchor', function(data)
     local Item = 'anchor'
     if Player.Functions.AddItem(Item, quantity) then
         Player.Functions.RemoveMoney(cash, price)
-	TriggerClientEvent('QBCore:Notify', src, 'You buy a anchor.', 'primary')
+	TriggerClientEvent('QBCore:Notify', src, 'You bought a anchor.', 'primary')
     end
 end)
 
@@ -397,8 +418,8 @@ RegisterNetEvent('chase-fishing:server:BuyBaits', function(data)
     local Player = QBCore.Functions.GetPlayer(source)
     local quantity = 1
     local cash = 'bank'
-    local price = 5
-    local Item = 'fishbait'
+    local price = 1
+    local Item = 'fishingbait'
 
     if Player.Functions.AddItem(Item, quantity) then
         Player.Functions.RemoveMoney(cash, price)
