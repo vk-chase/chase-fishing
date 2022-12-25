@@ -24,6 +24,30 @@ end)
 
 Citizen.CreateThread(function()
     local blip = AddBlipForCoord(-1592.64, 5202.2, 4.31)
+	SetBlipSprite(blip, 427)
+	SetBlipDisplay(blip, 4)
+	SetBlipScale(blip, 0.7)
+	SetBlipAsShortRange(blip, true)
+	SetBlipColour(blip, 37) 
+	BeginTextCommandSetBlipName("STRING")
+	AddTextComponentSubstringPlayerName("Boat Rentals")
+    EndTextCommandSetBlipName(blip)
+end)
+
+Citizen.CreateThread(function()
+    local blip = AddBlipForCoord(-1179.87, -1776.31, 3.91)
+	SetBlipSprite(blip, 88)
+	SetBlipDisplay(blip, 4)
+	SetBlipScale(blip, 0.7)
+	SetBlipAsShortRange(blip, true)
+	SetBlipColour(blip, 37) 
+	BeginTextCommandSetBlipName("STRING")
+	AddTextComponentSubstringPlayerName("Fish Shop")
+    EndTextCommandSetBlipName(blip)
+end)
+
+Citizen.CreateThread(function()
+    local blip = AddBlipForCoord(3817.22, 4483.1, 6.37)
 	SetBlipSprite(blip, 88)
 	SetBlipDisplay(blip, 4)
 	SetBlipScale(blip, 0.7)
@@ -63,40 +87,76 @@ RegisterNetEvent('chase-fishing:client:SellFishies', function(data)
     TriggerServerEvent('chase-fishing:server:SellFishies')
 end)
 
-RegisterNetEvent('chase-fishing:client:StartFishing', function(data)
-    local ped = PlayerPedId()
+--[[
+RegisterNetEvent('chase-fishing:client:ExploitBlocker')
+AddEventHandler('chase-fishing:client:ExploitBlocker', function(source)
+    TriggerEvent('animations:client:EmoteCommandStart', { "parkingmeter" })
+    QBCore.Functions.Progressbar("exploit_fix", "Baiting the Hook...", math.random(1000,3000), false, true, {
+        disableMovement = true,
+        disableCarMovement = true,
+        disableMouse = false,
+        disableCombat = true,
+    }, {}, {}, {}, function() -- Done
+    TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+    TriggerEvent('chase-fishing:client:StartFishing')
+end)
+end)
+]]--
+
+
+
+local alreadyFishing = false
+RegisterNetEvent('chase-fishing:client:StartFishing', function(data) 
+    local HasItem = QBCore.Functions.HasItem('fishingbait')
+    if not HasItem then
+        QBCore.Functions.Notify("You dont have any fishing bait or not near water...", "error")
+        return
+    end
+
+    if alreadyFishing then
+        QBCore.Functions.Notify("You are already fishing!", "error")
+        return
+    end
+
     local time = math.random(1000, 5000)
+    local ped = PlayerPedId()
     local pos = GetEntityCoords(ped)
-        if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3.0) then
-            local ped = PlayerPedId()
-	    local asdfasdf = math.random(2,7)
-            local animDict = "amb@world_human_stand_fishing@idle_a"
-            local animName = "idle_c" 
-            local pedPos = GetEntityCoords(ped)
-            local fishingRodHash = `prop_fishing_rod_01`
-            local bone = GetPedBoneIndex(ped, 18905)	
-	    Wait(500)
-            RequestAnimDict(animDict)
-			while not HasAnimDictLoaded(animDict) do
-				Wait(100)
-			end
-			TaskPlayAnim(ped, animDict, animName, 1.0, -1.0, 1.0, 11, 0, 0, 0, 0)   
-            rodHandle = CreateObject(fishingRodHash, pedPos, true)
-            AttachEntityToEntity(rodHandle, ped, bone, 0.1, 0.05, 0, 80.0, 120.0, 160.0, true, true, false, true, 1, true)
-            Wait(time)
-            local success = exports['qb-lock']:StartLockPickCircle(asdfasdf,30)
-            if success then
-                TriggerServerEvent('chase-fishing:server:GiveFish')
-                ClearPedTasks(ped)
-                DeleteObject(rodHandle)
-            else
-                QBCore.Functions.Notify('The fish got away, you suck!...', 'error', 7500)
-                ClearPedTasks(ped)
-                DeleteObject(rodHandle)
-            end
-        else
-        QBCore.Functions.Notify("You need to put bait on it and throw it in water, simple right?...", "error")
+    alreadyFishing = true
+
+    if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3.0) then
+        hasStartedFishing = true
+        local ped = PlayerPedId()
+        local animDict = "amb@world_human_stand_fishing@idle_a"
+        local animName = "idle_c" 
+        local pedPos = GetEntityCoords(ped)
+        local fishingRodHash = `prop_fishing_rod_01`
+        local bone = GetPedBoneIndex(ped, 18905)
+                
+        Wait(500)
+        RequestAnimDict(animDict)
+        while not HasAnimDictLoaded(animDict) do
+            Wait(100)
         end
+        TaskPlayAnim(ped, animDict, animName, 1.0, -1.0, 1.0, 11, 0, 0, 0, 0)   
+        rodHandle = CreateObject(fishingRodHash, pedPos, true)
+        AttachEntityToEntity(rodHandle, ped, bone, 0.1, 0.05, 0, 80.0, 120.0, 160.0, true, true, false, true, 1, true)
+        Wait(time)
+        local success = exports['qb-lock']:StartLockPickCircle(5,20)
+        if success then
+            TriggerServerEvent('chase-fishing:server:GiveFish')
+            TriggerServerEvent('chase-fishing:server:removebait')
+            ClearPedTasks(ped)
+            DeleteObject(rodHandle)
+            DeleteEntity(fishingRodHash)
+        else
+            QBCore.Functions.Notify('The fish escaped...', 'error', 7500)
+            TriggerServerEvent('chase-fishing:server:removebait')
+            ClearPedTasks(ped)
+            DeleteObject(rodHandle)
+            DeleteEntity(fishingRodHash)
+        end
+        alreadyFishing = false
+    end
 end)
 
 RegisterNetEvent('chase-fishing:client:anchordown', function()
