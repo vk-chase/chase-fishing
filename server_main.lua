@@ -1,52 +1,5 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
-local ItemList = {
-    ["exoticfish"] =  math.random(350, 600),
-    ["sharktiger"] =  math.random(150, 350),
-    ["sharkhammer"] =  math.random(150, 350),
-    ["killerwhale"] =  math.random(150, 350),
-    ["dolphin"] =  math.random(150, 350),
-    ["stingray"] =  math.random(150, 350),
-    ["fishingboot"] =  math.random(15, 20),
-    ["fishingtin"] =  math.random(15, 30),
-    ["fishingkey"] =  math.random(15, 30),
-    ["flounder"] =  math.random(15, 20),
-    ["codfish"] =  math.random(20, 30),
-    ["mackerel"] =  math.random(20, 35),
-    ["bass"] =  math.random(25, 35),
-    ["bristlenosepleco"] =  math.random(15, 50),
-    ["goldnuggetpleco"] =  math.random(15, 50),
-    ["whiptailcatfish"] =  math.random(15, 50),
-    ["panaque"] =  math.random(15, 50),
-    ["redtailcatfish"] =  math.random(15, 50),
-    ["pictuscatfish"] =  math.random(15, 50),
-    ["marlin"] =  math.random(15, 50),
-    ["swordfish"] =  math.random(15, 50),
-    ["sailfish"] =  math.random(15, 50),
-    ["snapper"] =  math.random(15, 50),
-    ["wahoo"] =  math.random(15, 50),
-    ["grouper"] =  math.random(15, 50),
-    ["cobia"] =  math.random(15, 50),
-    ["mahimahi"] =  math.random(15, 50),
-    ["tuna"] =  math.random(15, 50),
-    ["bluegill"] =  math.random(15, 50),
-    ["crappie"] =  math.random(15, 50),
-    ["musky"] =  math.random(15, 50),
-    ["northernpike"] =  math.random(15, 50),
-    ["walleye"] =  math.random(15, 50),
-    ["salmon"] =  math.random(15, 50),
-    ["pumpkinseed"] =  math.random(15, 50),
-    ["rockbass"] =  math.random(15, 50),
-    ["yellowpurch"] =  math.random(15, 50),
-    ["bullhead"] =  math.random(15, 50),
-    ["sturgeon"] =  math.random(15, 50),
-    ["halibut"] =  math.random(15, 50),
-
-
-}
-
-
-
 QBCore.Functions.CreateUseableItem("fishingrod", function(source, item)
 	local src = source
     	local Player = QBCore.Functions.GetPlayer(source)
@@ -360,17 +313,18 @@ RegisterNetEvent('chase-fishing:server:removebait', function(data)
     local itemCount = 1
     if itemFound then
         for i = 1, itemCount, 1 do
-      	    if luck >= 60 and luck <= 100 then
+      	    if luck >= 20 and luck <= 100 then
 				Player.Functions.RemoveItem('fishingbait', 1)
-				TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['halibut'], "remove", 1)
+				TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['fishingbait'], "remove", 1)
 				TriggerClientEvent('QBCore:Notify', src, "You lost your bait", "error")
-		    	elseif luck >= 1 and luck <= 60 then
+		    	elseif luck >= 1 and luck <= 20 then
 				TriggerClientEvent('QBCore:Notify', src, "You managed to save some bait", "success")
             end
             Citizen.Wait(500)
         end
     end
 end)
+
 
 RegisterNetEvent('chase-fishing:server:BuyRod', function(data)
     local src = source
@@ -438,29 +392,6 @@ RegisterNetEvent('chase-fishing:server:BuyAanchor', function(data)
     if Player.Functions.AddItem(Item, quantity) then
         Player.Functions.RemoveMoney(cash, price)
 	TriggerClientEvent('QBCore:Notify', src, 'You bought an Anchor!.', 'primary')		
-    end
-end)
-
-RegisterNetEvent('chase-fishing:server:SellFishies', function()
-    local src = source
-    local price = 0
-    local Player = QBCore.Functions.GetPlayer(src)
-    
-    local xItem = Player.Functions.GetItemsByName(ItemList)
-    if xItem ~= nil then
-        for k, v in pairs(Player.PlayerData.items) do
-            if Player.PlayerData.items[k] ~= nil then
-                if ItemList[Player.PlayerData.items[k].name] ~= nil then
-                    price = price + (ItemList[Player.PlayerData.items[k].name] * Player.PlayerData.items[k].amount)
-                    Player.Functions.RemoveItem(Player.PlayerData.items[k].name, Player.PlayerData.items[k].amount, k)
-
-        Player.Functions.AddMoney("cash", price, "sold-fish")
-            TriggerClientEvent('QBCore:Notify', src, "You sold all your fished up stuff for $"..price)
-                end
-            end
-        end
-    else
-        TriggerClientEvent('QBCore:Notify', src, "You dont/'t have anything to sell..")
     end
 end)
 
