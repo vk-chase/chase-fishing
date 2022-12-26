@@ -16,7 +16,7 @@ lots of stuffs !
 
 preview:
 
-https://youtu.be/BEJLj06NZhI
+https://youtu.be/BEJLj06NZhI --outdated! this is a wip so the script is updated regularly !
 
 --===========================================--
 
