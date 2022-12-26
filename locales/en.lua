@@ -9,14 +9,12 @@ local Translations = {
     },
     info = {
         title = 'Fish Shop',
-
         open_fish = 'Check out Fishing Shop',
         sell = 'Sell Items',
         sell_fish = 'Sell Items',
         sell_items = 'Value = $%{value}',
         back = '⬅ Go Back',
         max = 'Max Amount %{value}',
-
     }
 }
 
