@@ -411,4 +411,4 @@ RegisterNetEvent('chase-usablefishingloots:client:open19', function()
         TriggerServerEvent('chase-usablefishingloots:server:delete19')
 
     end)
-end) 
+end)
