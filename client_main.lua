@@ -87,24 +87,6 @@ RegisterNetEvent('chase-fishing:client:SellFishies', function(data)
     TriggerServerEvent('chase-fishing:server:SellFishies')
 end)
 
---[[
-RegisterNetEvent('chase-fishing:client:ExploitBlocker')
-AddEventHandler('chase-fishing:client:ExploitBlocker', function(source)
-    TriggerEvent('animations:client:EmoteCommandStart', { "parkingmeter" })
-    QBCore.Functions.Progressbar("exploit_fix", "Baiting the Hook...", math.random(1000,3000), false, true, {
-        disableMovement = true,
-        disableCarMovement = true,
-        disableMouse = false,
-        disableCombat = true,
-    }, {}, {}, {}, function() -- Done
-    TriggerEvent('animations:client:EmoteCommandStart', {"c"})
-    TriggerEvent('chase-fishing:client:StartFishing')
-end)
-end)
-]]--
-
-
-
 local alreadyFishing = false
 RegisterNetEvent('chase-fishing:client:StartFishing', function(data) 
     local HasItem = QBCore.Functions.HasItem('fishingbait')
