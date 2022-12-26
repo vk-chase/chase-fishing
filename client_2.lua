@@ -131,7 +131,7 @@ RegisterNetEvent('chase-fishing:client:ShopMenu', function(data)
             header = "Sell All Fish",
             txt = "You'll sell all fish that you have on you... <br> We pay top Dollar for Rare ones..",
             params = {
-            event = "chase-fishing:client:SellFishies",
+            event = "fishmarket:client:openMenu",
             }
         },
         {
@@ -184,7 +184,7 @@ RegisterNetEvent('chase-fishing:client:ShopMenu2', function(data)
             header = "Sell All Fish",
             txt = "You'll sell all fish that you have on you... <br> We pay top Dollar for Rare ones..",
             params = {
-            event = "chase-fishing:client:SellFishies",
+            event = "fishmarket:client:openMenu",
             }
         },
         {
