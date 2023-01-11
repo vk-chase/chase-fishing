@@ -89,23 +89,20 @@ end)
 
 local alreadyFishing = false
 RegisterNetEvent('chase-fishing:client:StartFishing', function(data) 
+    local time = math.random(1000, 5000)
+    local ped = PlayerPedId()
+    local pos = GetEntityCoords(ped) 
     local HasItem = QBCore.Functions.HasItem('fishingbait')
-    if not HasItem then
+    if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3.0) and not HasItem then
         QBCore.Functions.Notify("You dont have any fishing bait or not near water...", "error")
         return
     end
-
-    if alreadyFishing then
+    if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3.0) and alreadyFishing then
         QBCore.Functions.Notify("You are already fishing!", "error")
         return
     end
-
-    local time = math.random(1000, 5000)
-    local ped = PlayerPedId()
-    local pos = GetEntityCoords(ped)
-    alreadyFishing = true
-
     if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3.0) then
+    alreadyFishing = true
         hasStartedFishing = true
         local ped = PlayerPedId()
         local animDict = "amb@world_human_stand_fishing@idle_a"
@@ -113,7 +110,6 @@ RegisterNetEvent('chase-fishing:client:StartFishing', function(data)
         local pedPos = GetEntityCoords(ped)
         local fishingRodHash = `prop_fishing_rod_01`
         local bone = GetPedBoneIndex(ped, 18905)
-                
         Wait(500)
         RequestAnimDict(animDict)
         while not HasAnimDictLoaded(animDict) do
@@ -138,7 +134,9 @@ RegisterNetEvent('chase-fishing:client:StartFishing', function(data)
             DeleteEntity(fishingRodHash)
         end
         alreadyFishing = false
+    
     end
+
 end)
 
 RegisterNetEvent('chase-fishing:client:anchordown', function()
@@ -236,7 +234,6 @@ RegisterNetEvent('chase-fishing:client:spawnFish', function(args)
 	if args == 1 then 
 		RequestTheModel("A_C_KillerWhale")
 		local pos = GetEntityCoords(PlayerPedId())
-		exports["mz-skills"]:UpdateSkill("Fishing", math.random(5,7))
 		local ped = CreatePed(29, `A_C_KillerWhale`, pos.x, pos.y, pos.z, 90.0, true, false)
 		SetEntityHealth(ped, 0)
 		DecorSetInt(ped, "propHack", 74)
@@ -246,7 +243,6 @@ RegisterNetEvent('chase-fishing:client:spawnFish', function(args)
 	elseif args == 2 then 
 		RequestTheModel("A_C_dolphin")
 		local pos = GetEntityCoords(PlayerPedId())
-		exports["mz-skills"]:UpdateSkill("Fishing", math.random(3,5))
 		local ped = CreatePed(29, `A_C_dolphin`, pos.x, pos.y, pos.z, 90.0, true, false)
 		SetEntityHealth(ped, 0)
 		DecorSetInt(ped, "propHack", 74)
@@ -256,7 +252,6 @@ RegisterNetEvent('chase-fishing:client:spawnFish', function(args)
 	elseif args == 3 then
 		RequestTheModel("A_C_sharkhammer")
 		local pos = GetEntityCoords(PlayerPedId())
-		exports["mz-skills"]:UpdateSkill("Fishing", math.random(4,6))
 		local ped = CreatePed(29, `A_C_sharkhammer`, pos.x, pos.y, pos.z, 90.0, true, false)
 		SetEntityHealth(ped, 0)
 		DecorSetInt(ped, "propHack", 74)
@@ -266,7 +261,6 @@ RegisterNetEvent('chase-fishing:client:spawnFish', function(args)
 	elseif args == 4 then
 		RequestTheModel("A_C_SharkTiger")
 		local pos = GetEntityCoords(PlayerPedId())
-		exports["mz-skills"]:UpdateSkill("Fishing", math.random(4,6))
 		local ped = CreatePed(29, `A_C_SharkTiger`, pos.x, pos.y, pos.z, 90.0, true, false)
 		SetEntityHealth(ped, 0)
 		DecorSetInt(ped, "propHack", 74)
@@ -276,7 +270,6 @@ RegisterNetEvent('chase-fishing:client:spawnFish', function(args)
 	elseif args == 5 then
 		RequestTheModel("A_C_stingray")
 		local pos = GetEntityCoords(PlayerPedId())
-		exports["mz-skills"]:UpdateSkill("Fishing", math.random(2,3))
 		local ped = CreatePed(29, `A_C_stingray`, pos.x, pos.y, pos.z, 90.0, true, false)
 		SetEntityHealth(ped, 0)
 		DecorSetInt(ped, "propHack", 74)
@@ -286,7 +279,6 @@ RegisterNetEvent('chase-fishing:client:spawnFish', function(args)
 	else
 		RequestTheModel("a_c_fish")
 		local pos = GetEntityCoords(PlayerPedId())
-		exports["mz-skills"]:UpdateSkill("Fishing", math.random(1,2))
 		local ped = CreatePed(29, `a_c_fish`, pos.x, pos.y, pos.z, 90.0, true, false)
 		SetEntityHealth(ped, 0)
 		DecorSetInt(ped, "propHack", 74)
