@@ -1,5 +1,7 @@
 Config = {}
 
+Config.FuelScript = 'LegacyFuel'   -- LegacyFuel / ps-fuel / etc.
+
 Config.FishyFish = {
     [1] = {
         item = 'exoticfish',
