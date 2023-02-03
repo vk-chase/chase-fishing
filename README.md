@@ -1,6 +1,8 @@
 ## to get started read all please... 
 
+FREE ON MY TEBEX https://chase-scripts.tebex.io/  
 
+DUE TO MY CONSTANT UPDATES THE THE SCRIPT AND TIME INVESTED IVE HIDDEN CODE TO PROTECT MY WORK BUT AS ALWAYS IT WILL STAY FREE!
 
 # chase-fishing
 qbcore advanced fishing
