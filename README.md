@@ -1,4 +1,4 @@
-old version is no longer supported, you can now get my updated v2 for free (was a paid version!) just drop a star!
+free (was a paid version on tebex!) just drop a star!
 
 main features are fishing anywhere with water!
 
@@ -11,4 +11,3 @@ and over 140+ FISH! with a built in sell shop!
 
 this is a all in 1, see tebex pannel for more info!
 
-click my tebex link under my picture, the script is mostly escrowed!
