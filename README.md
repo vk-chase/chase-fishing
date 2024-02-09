@@ -1,9 +1,20 @@
-free (was a paid version on tebex!) just drop a star!
-
-2 poles
-fly fishing / ocean fishing rods
-10 lure/bait for deep sea fishing 
-1 fly fishing lure for creeks / swampy areas
-and over 140+ FISH! with a built in sell shop!
+Fish rivers creeks ponds oceans and swampy areas. 
+Catch up to 144 types of fish.
+Boat and ATV rentals
 
 
+butchering / cooking // crafting coming soon. 
+
+includes readme file. 
+
+requirements:
+
+rpemotes 
+qb-menu
+qb-core
+qb-inventory
+qb-target
+
+any fuel script i.e. cdn / ps / legacy / qb ..etc etc
+
+please follow the config for options as there are alot
