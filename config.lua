@@ -1,8 +1,8 @@
 Config = Config or {}
 
-Config.ChargeAccount = 'bank' -- 'bank' or 'cash'
+Config.ChargeAccount = 'cash' -- 'bank' or 'cash'
 Config.FuelType = 'LegacyFuel'  -- 'ps-fuel' / 'cdn-fuel'  etc
-Config.NotifyType = 'rtx'  -- 'qb' 'rtx' or 'okok'
+Config.NotifyType = 'qb'  -- 'qb' 'rtx' or 'okok'
 
 --####################--
 -- Main Fishing Stuff --
@@ -20,7 +20,7 @@ Config.UseBucketAnimation = true -- Do you wanna use a bucket animation before c
 -- BOAT RENTALS --
 --##############--
 Config.OutdoorBoatRentSpawn1 = vector4(-1603.42, 5260.06, 0.12, 25.01) -- where the boat spawns
-Config.OutdoorBoatRent1 = vector3(-1592.92, 5203.02, 4.31) --taraget location
+Config.OutdoorBoatRent1 = vector4(-1593.07, 5202.89, 4.31, 296.22) --ped location to rent boat
 Config.BoatName1 = 'Dinghy' -- Name of the vehicle in the Menus in game
 Config.Boat1 = 'dinghy' -- you can put any boat spawn code here that you like, if they are large move the # Config.OutdoorBoatRentSpawn(s)
 Config.Boat1Rental = 100  -- set your own rental  price
@@ -48,7 +48,7 @@ Config.OffroadSpawn1 = vector4(-780.61, 5591.29, 33.61, 163.4)  -- atv spawn loc
 --##############--
 -- OUTDOOR SHOP --
 --##############--
-Config.OutdoorShop1 = vector3(-773.26, 5598.45, 33.61)  -- this will place the blip + target
+Config.OutdoorShop1 = vector4(-773.24, 5598.38, 33.61, 165.47)  -- ped to talk to for the shop menu
 Config.BoatAnchorCost = 800
 Config.RemoveBait = 50 -- ANGLER POLE LOSE BAIT %
 Config.LostBaitPoleOne = 50 -- FLY FISHING POLE LOSE BAIT %
@@ -99,19 +99,8 @@ Config.Lure10Time = math.random(20,45)
 
 
 Config.SellFish = vector3(35.34, 6663.25, 32.19) --### blip location ### to sell fish, can be same as next vecotr3
-Config.SellFishLocation = {
-         -- if you want a ped there, you can set one up using ms-peds / qb-target etc 
-   [1] = {
-           coords = vector3(35.34,6663.25,32.19), --sell coordz for target
-           length = 1,
-           width = 1,
-           heading = 0,
-           debugPoly = false,
-           minZ = 32,
-           maxZ = 33,
-           distance = 3.0
-       },
-   }
+Config.SellFishLocation = vector4(35.21, 6662.78, 32.19, 168.45) -- ped location for selling fish
+
 Config.BankMoney = false -- false= cash || true= bank
 Config.UseTimes = false -- false= sell fish anytime || true sell between hours 
 
