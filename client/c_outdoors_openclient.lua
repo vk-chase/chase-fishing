@@ -1,45 +1,57 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
---rental spots
+
 Citizen.CreateThread(function()
-    exports['qb-target']:AddBoxZone("coutdoorstarget2", Config.OutdoorBoatRent1, 1,1, {
-            name = "coutdoorstarget2",
-            heading = 0,
-            debugPoly = false,
-            minZ = Config.OutdoorBoatRent1-2.0,
-            maxZ = Config.OutdoorBoatRent1+2.0,
-    }, {
-        options = {
-            {
-                type = 'client',
-                event = 'c_Fish:client:RentedBoat1',
-                icon = 'fas fa-fish',
-                label = 'Rentals'
-            },
-        },
-        distance = 2.0
-    })
-end)
---store target area
-Citizen.CreateThread(function()
-    exports['qb-target']:AddBoxZone("coutdoorstarget1", Config.OutdoorShop1, 1,1, {
-            name = "coutdoorstarget1",
-            heading = 0,
-            debugPoly = false,
-            minZ = Config.OutdoorShop1-2.0,
-            maxZ = Config.OutdoorShop1+2.0,
-    }, {
-        options = {
-            {
+    --store target area
+    exports['qb-target']:SpawnPed({
+        spawnNow = true,
+        name = 'coutdoorstarget1',
+        model = 'cs_hunter', 
+        coords = Config.OutdoorShop1, 
+        minusOne = true,
+        freeze = true, 
+        invincible = true, 
+        blockevents = true, 
+        scenario = 'WORLD_HUMAN_AA_COFFEE', 
+        target = { 
+        options = { 
+            { 
                 type = 'client',
                 event = 'c_Fish:client:OutdoorStore',
                 icon = 'fas fa-anchor',
                 label = 'Open Shop Menu'
             },
         },
-        distance = 2.0
+            distance = 2.5, 
+        },
     })
+    --rental spots
+    exports['qb-target']:SpawnPed({
+        spawnNow = true,
+        name = 'coutdoorstarget2',
+        model = 'csb_cletus', 
+        coords = Config.OutdoorBoatRent1, 
+        minusOne = true,
+        freeze = true, 
+        invincible = true, 
+        blockevents = true, 
+        scenario = 'WORLD_HUMAN_WINDOW_SHOP_BROWSE', 
+        target = { 
+        options = { 
+            { 
+                type = 'client',
+                event = 'c_Fish:client:RentedBoat1',
+                icon = 'fas fa-fish',
+                label = 'Rentals'
+            },
+        },
+            distance = 2.5, 
+        },
+    })
+
+
 end)
+
 --store
 RegisterNetEvent('c_Fish:client:OutdoorStore')
 AddEventHandler('c_Fish:client:OutdoorStore', function()
