@@ -1,25 +1,28 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
 CreateThread(function()
-    for key, value in pairs(Config.SellFishLocation) do
-        exports['qb-target']:AddBoxZone('ReturnShopx2'..key, value.coords, value.length, value.width, {
-            name = 'ReturnShopx2'..key,
-            heading = value.heading,
-            minZ = value.minZ,
-            maxZ = value.maxZ,
-            debugPoly = value.debugPoly,
-        }, {
-            options = {
-                {
+        exports['qb-target']:SpawnPed({
+            spawnNow = true,
+            name = 'cfishingsellshop',
+            model = 'csb_chef', 
+            coords = Config.SellFishLocation, 
+            minusOne = true,
+            freeze = true, 
+            invincible = true, 
+            blockevents = true, 
+            scenario = 'WORLD_HUMAN_AA_SMOKE', 
+            target = { 
+            options = { 
+                { 
                     type = 'client',
                     event = 'c_Fish:client:openMenu',
                     icon = 'fas fa-fish',
-                    label = 'Fish Shop',
+                    label = 'Sell Fish',
                 },
             },
-            distance = value.distance
+                distance = 2.5, 
+            },
         })
-    end
 end)
 
 RegisterNetEvent('c_Fish:client:openMenu', function()
