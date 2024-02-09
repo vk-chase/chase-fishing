@@ -1,17 +1,12 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local IsRentingQuad = false
 local IsRentingBoat = false
-AddEventHandler('onResourceStart', function(resource)
-    local partB = 'c_Fish'
-    local name = tostring('a'..partB)
-    if GetCurrentResourceName() = name then
-        print('This script was brought to you by Chase Scripts, Please make sure the resource name is c_Fish! TY!')
-    end
-end)
+
 RegisterNetEvent('c_Fish:client:OpenCastMenu2')
 AddEventHandler('c_Fish:client:OpenCastMenu2', function()
     local ped = PlayerPedId()
     local pos = GetEntityCoords(ped)
+    if IsEntityInWater(ped) then QBCore.Functions.Notify('What are you doing get out of the water!.', "error", 5000) return end
     if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3) then
         exports['qb-menu']:openMenu({
             {
@@ -132,6 +127,7 @@ RegisterNetEvent('c_Fish:client:casting2', function(data)
         local ped = PlayerPedId()
         local pos = GetEntityCoords(ped)
         PoleInWater = true
+        if IsEntityInWater(ped) then QBCore.Functions.Notify('What are you doing get out of the water!.', "error", 5000) return end
         if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3) then
             hasStartedFishing = true
             local ped = PlayerPedId()
@@ -206,6 +202,7 @@ RegisterNetEvent('c_Fish:client:casting3', function(data)
         local ped = PlayerPedId()
         local pos = GetEntityCoords(ped)
         PoleInWater = true
+        if IsEntityInWater(ped) then QBCore.Functions.Notify('What are you doing get out of the water!.', "error", 5000) return end
         if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3) then
             hasStartedFishing = true
             local ped = PlayerPedId()
@@ -280,6 +277,7 @@ RegisterNetEvent('c_Fish:client:casting4', function(data)
         local ped = PlayerPedId()
         local pos = GetEntityCoords(ped)
         PoleInWater = true
+        if IsEntityInWater(ped) then QBCore.Functions.Notify('What are you doing get out of the water!.', "error", 5000) return end
         if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3) then
             hasStartedFishing = true
             local ped = PlayerPedId()
@@ -354,6 +352,7 @@ RegisterNetEvent('c_Fish:client:casting5', function(data)
         local ped = PlayerPedId()
         local pos = GetEntityCoords(ped)
         PoleInWater = true
+        if IsEntityInWater(ped) then QBCore.Functions.Notify('What are you doing get out of the water!.', "error", 5000) return end
         if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3) then
             hasStartedFishing = true
             local ped = PlayerPedId()
@@ -428,6 +427,7 @@ RegisterNetEvent('c_Fish:client:casting6', function(data)
         local ped = PlayerPedId()
         local pos = GetEntityCoords(ped)
         PoleInWater = true
+        if IsEntityInWater(ped) then QBCore.Functions.Notify('What are you doing get out of the water!.', "error", 5000) return end
         if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3) then
             hasStartedFishing = true
             local ped = PlayerPedId()
@@ -502,6 +502,7 @@ RegisterNetEvent('c_Fish:client:casting7', function(data)
         local ped = PlayerPedId()
         local pos = GetEntityCoords(ped)
         PoleInWater = true
+        if IsEntityInWater(ped) then QBCore.Functions.Notify('What are you doing get out of the water!.', "error", 5000) return end
         if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3) then
             hasStartedFishing = true
             local ped = PlayerPedId()
@@ -576,6 +577,7 @@ RegisterNetEvent('c_Fish:client:casting8', function(data)
         local ped = PlayerPedId()
         local pos = GetEntityCoords(ped)
         PoleInWater = true
+        if IsEntityInWater(ped) then QBCore.Functions.Notify('What are you doing get out of the water!.', "error", 5000) return end
         if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3) then
             hasStartedFishing = true
             local ped = PlayerPedId()
@@ -650,6 +652,7 @@ RegisterNetEvent('c_Fish:client:casting9', function(data)
         local ped = PlayerPedId()
         local pos = GetEntityCoords(ped)
         PoleInWater = true
+        if IsEntityInWater(ped) then QBCore.Functions.Notify('What are you doing get out of the water!.', "error", 5000) return end
         if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3) then
             hasStartedFishing = true
             local ped = PlayerPedId()
@@ -724,6 +727,7 @@ RegisterNetEvent('c_Fish:client:casting10', function(data)
         local ped = PlayerPedId()
         local pos = GetEntityCoords(ped)
         PoleInWater = true
+        if IsEntityInWater(ped) then QBCore.Functions.Notify('What are you doing get out of the water!.', "error", 5000) return end
         if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3) then
             hasStartedFishing = true
             local ped = PlayerPedId()
@@ -798,6 +802,7 @@ RegisterNetEvent('c_Fish:client:casting11', function(data)
         local ped = PlayerPedId()
         local pos = GetEntityCoords(ped)
         PoleInWater = true
+        if IsEntityInWater(ped) then QBCore.Functions.Notify('What are you doing get out of the water!.', "error", 5000) return end
         if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3) then
             hasStartedFishing = true
             local ped = PlayerPedId()
@@ -913,7 +918,8 @@ RegisterNetEvent('c_Fish:client:casting1', function(data)
         local ped = PlayerPedId()
         local pos = GetEntityCoords(ped)
         PoleInWater = true
-        if IsEntityInWater(ped) then
+        if GetWaterHeight(pos.x, pos.y, pos.z-2, pos.z - 3) then QBCore.Functions.Notify('Water seems a bit to deep to fish with this..', "error", 5000) return end
+        if IsEntityInWater(ped) then 
             hasStartedFishing = true
             local ped = PlayerPedId()
             Wait(100)
@@ -963,7 +969,8 @@ RegisterNetEvent('c_Fish:client:casting1', function(data)
             if Config.NotifyType == 'rtx' then
                 TriggerEvent("rtx_notify:Notify", Lang:t('error.okokcaughtfishtitle'), Lang:t('error.notwading'), 5000, "error")
             end
-    end
+        end
+    --end
     PoleInWater = false
 end)
 RegisterNetEvent('c_Fish:client:anchor', function()
@@ -1135,6 +1142,7 @@ RegisterNetEvent('c_Fish:client:openTackle', function()
         TriggerEvent('animations:client:EmoteCommandStart', {"pickup"})
         Wait(2500)
         TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+
         TriggerEvent('animations:client:EmoteCommandStart', {"mechanic4"})
         QBCore.Functions.Progressbar('name_here', Lang:t('success.tackleboxopen'), math.random(2500,5000), false, false, {
             disableMovement = true,
@@ -1147,7 +1155,9 @@ RegisterNetEvent('c_Fish:client:openTackle', function()
             TriggerServerEvent('c_Fish:server:openTackle')
             TriggerServerEvent('c_Fish:server:RemoveopenTackle')
         end)
+        
     end
+
     if Config.UseOpenToolboxAnimation == false then
         TriggerEvent('animations:client:EmoteCommandStart', {"uncuff"})
         QBCore.Functions.Progressbar('name_here', Lang:t('success.tackleboxopen'), math.random(2500,5000), false, false, {
