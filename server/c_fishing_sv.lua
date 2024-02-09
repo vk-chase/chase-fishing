@@ -1,4 +1,5 @@
 local QBCore = exports['qb-core']:GetCoreObject()
+local luck = math.random(1, 100)
 
 QBCore.Functions.CreateUseableItem("c_fishingpole_one", function(source, item) --flyfishing
    local Player = QBCore.Functions.GetPlayer(source)
@@ -33,7 +34,7 @@ end)
 RegisterNetEvent('c_outdoorsserver:FishPool1', function() 
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    local luck = math.random(1, 100)
+    
     local itemFound = true
     local itemCount = 1
     if itemFound then
@@ -108,7 +109,7 @@ end)
 RegisterNetEvent('c_outdoorsserver:FishPool2', function() 
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    local luck = math.random(1, 100)
+    
     local itemFound = true
     local itemCount = 1
     if itemFound then
@@ -182,7 +183,7 @@ end)
 RegisterNetEvent('c_outdoorsserver:FishPool3', function() 
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    local luck = math.random(1, 100)
+    
     local itemFound = true
     local itemCount = 1
     if itemFound then
@@ -257,7 +258,7 @@ end)
 RegisterNetEvent('c_outdoorsserver:FishPool4', function() 
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    local luck = math.random(1, 100)
+    
     local itemFound = true
     local itemCount = 1
     if itemFound then
@@ -332,7 +333,7 @@ end)
 RegisterNetEvent('c_outdoorsserver:FishPool5', function() 
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    local luck = math.random(1, 100)
+    
     local itemFound = true
     local itemCount = 1
     if itemFound then
@@ -407,7 +408,7 @@ end)
 RegisterNetEvent('c_outdoorsserver:FishPool6', function() 
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    local luck = math.random(1, 100)
+    
     local itemFound = true
     local itemCount = 1
     if itemFound then
@@ -482,7 +483,7 @@ end)
 RegisterNetEvent('c_outdoorsserver:FishPool7', function() 
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    local luck = math.random(1, 100)
+    
     local itemFound = true
     local itemCount = 1
     if itemFound then
@@ -556,7 +557,7 @@ RegisterNetEvent('c_outdoorsserver:FishPool7', function()
 RegisterNetEvent('c_outdoorsserver:FishPool8', function() 
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    local luck = math.random(1, 100)
+    
     local itemFound = true
     local itemCount = 1
     if itemFound then
@@ -631,7 +632,7 @@ end)
 RegisterNetEvent('c_outdoorsserver:FishPool9', function() 
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    local luck = math.random(1, 100)
+    
     local itemFound = true
     local itemCount = 1
     if itemFound then
@@ -706,7 +707,7 @@ end)
 RegisterNetEvent('c_outdoorsserver:FishPool10', function() 
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    local luck = math.random(1, 100)
+    
     local itemFound = true
     local itemCount = 1
     if itemFound then
@@ -781,7 +782,7 @@ end)
 RegisterNetEvent('c_outdoorsserver:FishPool11', function() 
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    local luck = math.random(1, 100)
+    
     local itemFound = true
     local itemCount = 1
     if itemFound then
