@@ -3,17 +3,25 @@ Catch up to 144 types of fish.
 Boat and ATV rentals
 
 
-butchering / cooking // crafting coming soon. 
+***butchering / cooking // crafting coming soon. 
 
-includes readme file. 
+includes readme file. ***
 
-requirements:
+***requirements:
 
 rpemotes 
+
 qb-menu
+
 qb-core
+
 qb-inventory
+
 qb-target
+
+ps-ui
+***
+
 
 any fuel script i.e. cdn / ps / legacy / qb ..etc etc
 
