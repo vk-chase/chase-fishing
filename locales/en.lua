@@ -25,7 +25,7 @@ local Translations = {
         missingsnakehead = 'You dont have a Snakehead Peche Iscas!...',
         missingdryfly = 'You dont have a Dry Fly Lure!...',
 
-        notwading = 'Make sure you are wading, try a shoreline or in a creek!...',
+        notwading = 'Make sure you are wading, try a creek, river or even swampy area!...',
         checkyoself = 'Make sure you face water and are on a sturdy surface!...',
 
         --errors for broke bitches
@@ -80,7 +80,7 @@ local Translations = {
         max = 'Max Amount %{value}',
         okoksoldfishtitle = 'Sold',
         okoknotsoldfishtitle = 'Could Not Sell',
-
+        lostabigone = 'You Just Lost a big catch!!!',
         -- catching fish success
         okokcaughtfishtitle = 'Fishing', -- the title of the notificaiton if you use okok 
         caughtfish = 'Fish Caught..',
