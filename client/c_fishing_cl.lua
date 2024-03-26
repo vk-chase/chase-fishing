@@ -1052,7 +1052,6 @@ propBox = function()
         Wait(2500)
         TriggerEvent('animations:client:EmoteCommandStart', {"pickup"})
         Wait(1000)
-        TriggerEvent('animations:client:EmoteCommandStart', {"c"})
         DeleteEntity(obj)
         Wait(1000)
     end
@@ -1124,6 +1123,21 @@ RegisterNetEvent('c_Fish:client:BuyAnchor', function(data)
     TriggerEvent('animations:client:EmoteCommandStart', {"c"})
     TriggerEvent('c_Fish:client:shopmenuFish')
 end)
+RegisterNetEvent('c_Fish:client:buyhive', function(data)
+    TriggerEvent('animations:client:EmoteCommandStart', {"point"})
+    TriggerServerEvent('c_Fish:server:BuyBeeHive')
+    Wait(1000)
+    TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+    TriggerEvent('c_Fish:client:BeeMenu')
+end)
+RegisterNetEvent('c_Fish:client:buybee', function(data)
+    TriggerEvent('animations:client:EmoteCommandStart', {"point"})
+    TriggerServerEvent('c_Fish:server:BuyQueenBee')
+    Wait(1000)
+    TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+    TriggerEvent('c_Fish:client:BeeMenu')
+end)
+
 RegisterNetEvent('c_Fish:client:openTackle', function()
     if Config.UseOpenToolboxAnimation == true then
 
@@ -1471,8 +1485,8 @@ AddEventHandler('c_Fish:client:RemoveVehicleboats', function()
     DeleteEntity(car)
     IsRentingBoat = false
 end)
-RegisterNetEvent('c_Fish:client:buynomoney', function()
 
+RegisterNetEvent('c_Fish:client:buynomoney', function()
     if Config.NotifyType == 'qb' then
         QBCore.Functions.Notify(Lang:t('error.notenoughmoneybank'), "error", 5000)
     end
@@ -1483,6 +1497,7 @@ RegisterNetEvent('c_Fish:client:buynomoney', function()
         TriggerEvent("rtx_notify:Notify", Lang:t('error.okokcaughtfishtitle'), Lang:t('error.notenoughmoneybank'), 5000, "error")
     end
 end)
+
 RegisterNetEvent('c_Fish:client:buynomoneycash', function()
     if Config.NotifyType == 'qb' then
         QBCore.Functions.Notify(Lang:t('error.notenoughmoneycash'), "error", 5000)
