@@ -2,7 +2,7 @@ Config = Config or {}
 
 Config.ChargeAccount = 'cash' -- 'bank' or 'cash'
 Config.FuelType = 'LegacyFuel'  -- 'ps-fuel' / 'cdn-fuel'  etc
-Config.NotifyType = 'qb'  -- 'qb' 'rtx' or 'okok'
+Config.NotifyType = 'rtx'  -- 'qb' 'rtx' or 'okok'
 
 --####################--
 -- Main Fishing Stuff --
@@ -15,6 +15,15 @@ Config.UseBucketAnimation = true -- Do you wanna use a bucket animation before c
 
 -- turning these all off will make this basic fishing with the ps-ui circle minigame.. this wont effect the baits / fish caught.
 
+Config.Boat4Rental = 400 
+Config.Boat4Rental = 400 
+
+--##################--
+-- SNIPE BEEKEEPING --
+--##################--
+Config.SnipeBeeKeeping = true   -- If you use it and wanna sell the bee and hive from this shop put true // else put false 
+Config.QueenBeeCost = 5
+Config.BeeHiveCost = 50
 
 --##############--
 -- BOAT RENTALS --
