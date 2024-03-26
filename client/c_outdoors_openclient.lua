@@ -55,36 +55,123 @@ end)
 --store
 RegisterNetEvent('c_Fish:client:OutdoorStore')
 AddEventHandler('c_Fish:client:OutdoorStore', function()
-    exports['qb-menu']:openMenu({
-        {
-            header = 'SPORTSMAN LODGE',
-            icon = 'fas fa-fish',
-            isMenuHeader = true,
-        },
-        {
-            header = "FISHING ITEMS",
-            icon = 'fas fa-list-ul',
-            params = {
-                event = "c_Fish:client:shopmenuFish",
-            }
-        },
-        {
-            header = "RENT A QUAD",
-            icon = 'fas fa-list-ul',
-            params = {
-                event = "c_Fish:client:Rentedoffroad1",
-            }
-        },
-        {
-            header = "Close",
-            icon = 'fas fa-times',
-            txt = "",
-            params = {
-                event = "qb-menu:closeMenu",
-            }
-        },
-    })
+    if Config.SnipeBeeKeeping == true then
+        exports['qb-menu']:openMenu({
+                {
+                    header = 'SPORTSMAN LODGE',
+                    icon = 'fas fa-fish',
+                    isMenuHeader = true,
+                },
+                {
+                    header = "FISHING ITEMS",
+                    icon = 'fas fa-list-ul',
+                    params = {
+                        event = "c_Fish:client:shopmenuFish",
+                    }
+                },
+                {
+                    header = "RENT A QUAD",
+                    icon = 'fas fa-list-ul',
+                    params = {
+                        event = "c_Fish:client:Rentedoffroad1",
+                    }
+                },
+                {
+                    header = "BEEKEEPING",
+                    icon = 'fas fa-list-ul',
+                    params = {
+                        event = "c_Fish:client:BeeMenu",
+                    }
+                },
+
+                {
+                    header = "Close",
+                    icon = 'fas fa-times',
+                    txt = "",
+                    params = {
+                        event = "qb-menu:closeMenu",
+                    }
+                },
+            })
+    else
+        exports['qb-menu']:openMenu({
+            {
+                header = 'SPORTSMAN LODGE',
+                icon = 'fas fa-fish',
+                isMenuHeader = true,
+            },
+            {
+                header = "FISHING ITEMS",
+                icon = 'fas fa-list-ul',
+                params = {
+                    event = "c_Fish:client:shopmenuFish",
+                }
+            },
+            {
+                header = "RENT A QUAD",
+                icon = 'fas fa-list-ul',
+                params = {
+                    event = "c_Fish:client:Rentedoffroad1",
+                }
+            },
+            {
+                header = "Close",
+                icon = 'fas fa-times',
+                txt = "",
+                params = {
+                    event = "qb-menu:closeMenu",
+                }
+            },
+        })
+    end
 end)
+
+
+RegisterNetEvent('c_Fish:client:BeeMenu')
+AddEventHandler('c_Fish:client:BeeMenu', function()
+        exports['qb-menu']:openMenu({
+                {
+                    header = 'Beekeeping Items',
+                    icon = 'fas fa-list-ul',
+                    isMenuHeader = true,
+                },
+                {
+                    header = "BUY BEEHIVE",
+                    icon = 'fas fa-list-ul',
+                    txt = "$"..Config.BeeHiveCost.." per<br>You may only place 1 at a time<br>The ground must be dusty / sandy to place",
+                    params = {
+                        event = "c_Fish:client:buyhive",
+                    }
+                },
+                {
+                    header = "BUY A QUEEN BEE",
+                    icon = 'fas fa-list-ul',
+                    txt = "$"..Config.QueenBeeCost.." per<br>You may only place 1 bee inside a Behive at a time!",
+                    params = {
+                        event = "c_Fish:client:buybee",
+                    }
+                },
+                {
+                    header = "Main Menu",
+                    icon = 'fa-solid fa-backward',
+                    txt = 'RETURN BACK TO MENU',
+                    params = {
+                        event = "c_Fish:client:OutdoorStore",
+                    }
+                },
+                {
+                    header = "Close",
+                    icon = 'fas fa-times',
+                    txt = "",
+                    params = {
+                        event = "qb-menu:closeMenu",
+                    }
+                },
+            })
+
+end)
+
+
 --fishing options
 RegisterNetEvent('c_Fish:client:shopmenuFish')
 AddEventHandler('c_Fish:client:shopmenuFish', function()
@@ -96,7 +183,7 @@ AddEventHandler('c_Fish:client:shopmenuFish', function()
         },
         {
             header = "FLY FISHING",
-            txt = 'view the items for fly fishing',
+            txt = 'View the items for fly fishing',
             icon = 'c_fishingpole_two',
             params = {
                 event = "c_Fish:client:shopmenuFish1",
@@ -104,7 +191,7 @@ AddEventHandler('c_Fish:client:shopmenuFish', function()
         },
         {
             header = "OCEAN FISHING",
-            txt = 'view the items for ocean fishing',
+            txt = 'View the items for ocean fishing<br>135 fish to be caught!',
             icon = 'c_fishingpole_one',
             params = {
                 event = "c_Fish:client:shopmenuFish2",
@@ -242,7 +329,7 @@ Citizen.CreateThread(function()
 	    SetBlipAsShortRange(blip, true)
 	    SetBlipColour(blip, 25)
 	    BeginTextCommandSetBlipName("STRING")
-	    AddTextComponentSubstringPlayerName("Outdoor Buyer")
+	    AddTextComponentSubstringPlayerName("Fishing Shop")
         EndTextCommandSetBlipName(blip)
 end)
 Citizen.CreateThread(function()
@@ -264,7 +351,7 @@ Citizen.CreateThread(function()
 	SetBlipAsShortRange(blip, true)
 	SetBlipColour(blip, 25) 
 	BeginTextCommandSetBlipName("STRING")
-	AddTextComponentSubstringPlayerName("Outdoor Seller")
+	AddTextComponentSubstringPlayerName("Fish Market")
     EndTextCommandSetBlipName(blip)
 end)
 
