@@ -7,18 +7,9 @@
 includes readme file. ***
 ***
 **Requirements:**
-
-rpemotes 
-
-qb-menu
-
-qb-core
-
-qb-inventory
-
-qb-target
-
-ps-ui
+# ALL NEW UI MINIGAME INTEGRATED WITH THE SCRIPT. -V2 9/25/24 UPDATE
+# EXTREME CODE CLEANUP MAJOR UPDATE OVERHAUL
+# 0.00 MS IDLE AND IN USE.
 ***
 any fuel script i.e. cdn / ps / legacy / qb ..etc etc
 ***
