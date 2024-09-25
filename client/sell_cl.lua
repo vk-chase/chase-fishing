@@ -1,112 +1,89 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-
-CreateThread(function()
-        exports['qb-target']:SpawnPed({
-            spawnNow = true,
-            name = 'cfishingsellshop',
-            model = 'csb_chef', 
-            coords = Config.SellFishLocation, 
-            minusOne = true,
-            freeze = true, 
-            invincible = true, 
-            blockevents = true, 
-            scenario = 'WORLD_HUMAN_AA_SMOKE', 
-            target = { 
-            options = { 
-                { 
-                    type = 'client',
-                    event = 'c_Fish:client:openMenu',
-                    icon = 'fas fa-fish',
-                    label = 'Sell Fish',
-                },
-            },
-                distance = 2.5, 
-            },
-        })
-end)
-
-RegisterNetEvent('c_Fish:client:openMenu', function()
-    if Config.UseTimes then
-        if GetClockHours() >= Config.TimeOpen and GetClockHours() <= Config.TimeClosed then
-            local returnShop = {
-                {
-                    header = Lang:t('info.title'),
-                    isMenuHeader = true,
-                },
-                {
-                    header = Lang:t('info.sell'),
-                    txt = Lang:t('info.sell_return'),
-                    params = {
-                        event = 'c_Fish:client:openReturn',
-                        args = {
-                            items = Config.FishItems
-                        }
-                    }
-                }
-            }
-            exports['qb-menu']:openMenu(returnShop)
-        else
-            TriggerEvent("rtx_notify:Notify", "Pawn", Lang:t('info.return_closed', { value = Config.TimeOpen, value2 = Config.TimeClosed }), 5000, "error")
-        end
-    else
-        local returnShop = {
-            {
-                header = Lang:t('info.title'),
-                isMenuHeader = true,
-            },
-            {
-                header = Lang:t('info.sell'),
-                txt = Lang:t('info.sell_return'),
-                params = {
-                    event = 'c_Fish:client:openReturn',
-                    args = {
-                        items = Config.FishItems
-                    }
+local function openReturnShop()
+    local returnShop = {
+        {
+            header = Lang:t('info.title'),
+            isMenuHeader = true,
+        },
+        {
+            header = Lang:t('info.sell'),
+            txt = Lang:t('info.sell_return'),
+            params = {
+                event = 'c_Fish:client:openReturn',
+                args = {
+                    items = Config.FishItems
                 }
             }
         }
-        exports['qb-menu']:openMenu(returnShop)
+    }
+    exports['qb-menu']:openMenu(returnShop)
+end
+RegisterNetEvent('c_Fish:client:openMenu', function()
+    if not Config.SellFish.UseTimes then
+        openReturnShop()
+        return
+    end
+    local currentHour = GetClockHours()
+    if currentHour >= Config.SellFish.TimeOpen and currentHour <= Config.SellFish.TimeClosed then
+        openReturnShop()
+    else
+        QBCore.Functions.Notify(Lang:t('info.return_closed', {value = Config.SellFish.TimeOpen, value2 = Config.SellFish.TimeClosed}), 'error', 5000)
     end
 end)
-
 RegisterNetEvent('c_Fish:client:openReturn', function(data)
     QBCore.Functions.TriggerCallback('c_Fish:server:getInv', function(inventory)
-        local PlyInv = inventory
+        for _, item in ipairs(inventory) do
+        end
+
         local returnMenu = {
             {
                 header = Lang:t('info.title'),
                 isMenuHeader = true,
             }
         }
-        for _, v in pairs(PlyInv) do
-            for i = 1, #data.items do
-                if v.name == data.items[i].item then
+
+        local fishFound = false
+        for _, v in pairs(inventory) do
+            for _, fishItem in ipairs(Config.FishItems) do
+                if v.name == fishItem.item then
+                    fishFound = true
+                    local price = type(fishItem.price) == "function" and fishItem.price() or fishItem.price
                     returnMenu[#returnMenu + 1] = {
                         header = QBCore.Shared.Items[v.name].label,
-                        txt = Lang:t('info.sell_items', { value = data.items[i].price }),
+                        txt = Lang:t('info.sell_items', {value = price}),
                         params = {
                             event = 'c_Fish:client:returnitems',
                             args = {
                                 label = QBCore.Shared.Items[v.name].label,
-                                price = data.items[i].price,
+                                price = price,
                                 name = v.name,
                                 amount = v.amount
                             }
                         }
                     }
+                    break
                 end
             end
         end
+
+        if not fishFound then
+            returnMenu[#returnMenu + 1] = {
+                header = Lang:t('info.no_fish'),
+                txt = Lang:t('info.no_fish_desc'),
+                isMenuHeader = true
+            }
+        end
+
         returnMenu[#returnMenu + 1] = {
             header = Lang:t('info.back'),
             params = {
                 event = 'c_Fish:client:openMenu'
             }
         }
+
         exports['qb-menu']:openMenu(returnMenu)
     end)
 end)
-
 RegisterNetEvent('c_Fish:client:returnitems', function(item)
     local sellingItem = exports['qb-input']:ShowInput({
         header = Lang:t('info.title'),
@@ -116,19 +93,16 @@ RegisterNetEvent('c_Fish:client:returnitems', function(item)
                 type = 'number',
                 isRequired = false,
                 name = 'amount',
-                text = Lang:t('info.max', { value = item.amount })
+                text = Lang:t('info.max', {value = item.amount})
             }
         }
     })
-    if sellingItem then
-        if not sellingItem.amount then
-            return
-        end
-
-        if tonumber(sellingItem.amount) > 0 then
-            TriggerServerEvent('c_Fish:server:SellReturnies', item.name, sellingItem.amount, item.price)
+    if sellingItem and sellingItem.amount then
+        local amount = tonumber(sellingItem.amount)
+        if amount and amount > 0 then
+            TriggerServerEvent('c_Fish:server:SellReturnies', item.name, amount, item.price)
         else
-            TriggerEvent("rtx_notify:Notify", "Pawn", Lang:t('error.negative'), 5000, "error")
+            QBCore.Functions.Notify(Lang:t('error.negative'), 'error', 5000)
         end
     end
 end)
