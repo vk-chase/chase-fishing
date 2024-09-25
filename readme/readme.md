@@ -6,7 +6,6 @@ add to items in shared lua
 add pngs to inventory / html / images
 
 # ADDED DESCRIPTIONS FOR ALL FISH AND ITEMS. -v2
-
     c_fishingpole_one = {name = 'c_fishingpole_one', label = 'Fly Fishing Rod', weight = 2100, type = 'item', image = 'c_fishingpole_one.png', unique = true, useable = true, shouldClose = true, combinable = nil, description = 'Lightweight rod for precise fly fishing in various waters'},
     c_fishingpole_two = {name = 'c_fishingpole_two', label = 'Offshore Angler Sea Lion', weight = 2100, type = 'item', image = 'c_fishingpole_two.png', unique = true, useable = true, shouldClose = true, combinable = nil, description = 'Heavy-duty rod for deep-sea fishing adventures'},
     c_bait_one = {name = 'c_bait_one', label = 'Dry Fly Lure', weight = 85, type = 'item', image = 'c_bait_one.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'Realistic fly lure for surface fishing'},
@@ -140,7 +139,6 @@ add pngs to inventory / html / images
     c_fish116 = {name = 'c_fish116', label = 'Cornetfish', weight = 150, type = 'item', image = 'c_fish116.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'A long, thin fish with a trumpet-like snout'},
     c_fish117 = {name = 'c_fish117', label = 'Rainbow Runner', weight = 150, type = 'item', image = 'c_fish117.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'A fast-swimming fish with iridescent colors'},
     c_fish118 = {name = 'c_fish118', label = 'Longfin Batfish', weight = 150, type = 'item', image = 'c_fish118.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'A peculiar fish with elongated fins resembling bat wings'},
-    --lure9(c_bait_ten)
     c_fish119 = {name = 'c_fish119', label = 'Masked Angelfish', weight = 150, type = 'item', image = 'c_fish119.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'An angelfish with a distinctive black mask-like marking'},
     c_fish120 = {name = 'c_fish120', label = 'Quoy Parrotfish', weight = 150, type = 'item', image = 'c_fish120.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'A colorful parrotfish named after French naturalist Jean Quoy'},
     c_fish121 = {name = 'c_fish121', label = 'Wedgetail Filefish', weight = 150, type = 'item', image = 'c_fish121.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'A filefish with a distinctive wedge-shaped tail'},
@@ -154,7 +152,6 @@ add pngs to inventory / html / images
     c_fish129 = {name = 'c_fish129', label = 'Estuary Catfish', weight = 150, type = 'item', image = 'c_fish129.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'A catfish species adapted to brackish estuary waters'},
     c_fish130 = {name = 'c_fish130', label = 'Uaru', weight = 150, type = 'item', image = 'c_fish130.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'A large, disc-shaped cichlid from South America'},
     c_fish131 = {name = 'c_fish131', label = 'Ragfish', weight = 150, type = 'item', image = 'c_fish131.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'A deep-sea fish with a soft, limp body'},
-    --lure10 (c_bait_eleven)
     c_fish132 = {name = 'c_fish132', label = 'Peppermint Angelfish', weight = 150, type = 'item', image = 'c_fish132.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'A rare angelfish with red and white stripes'},
     c_fish133 = {name = 'c_fish133', label = 'Lacandon Sea Catfish', weight = 150, type = 'item', image = 'c_fish133.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'A sea catfish native to the waters of Central America'},
     c_fish134 = {name = 'c_fish134', label = 'Blacksaddle Snake Eel', weight = 150, type = 'item', image = 'c_fish134.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'An eel with distinctive black saddle-like markings'},
@@ -168,3 +165,4 @@ add pngs to inventory / html / images
     c_fish142 = {name = 'c_fish142', label = 'Ballan Wrasse', weight = 150, type = 'item', image = 'c_fish142.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'A large wrasse species found in the northeastern Atlantic'},
     c_fish143 = {name = 'c_fish143', label = 'Pastel Ring Wrasse', weight = 150, type = 'item', image = 'c_fish143.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'A wrasse with delicate pastel-colored rings on its body'},
     c_fish144 = {name = 'c_fish144', label = 'Gray Bichir', weight = 150, type = 'item', image = 'c_fish144.png', unique = false, useable = false, shouldClose = false, combinable = nil, description = 'An ancient fish species with primitive lungs'},
+
