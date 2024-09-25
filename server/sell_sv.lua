@@ -17,7 +17,6 @@ local function SendDiscordWebhook(player, itemName, itemAmount, totalPrice)
             ["timestamp"] = os.date("!%Y-%m-%dT%H:%M:%SZ")
         }
     }
-
     PerformHttpRequest(Config.discordWebhookURL, function(err, text, headers) end, 'POST', json.encode({embeds = embed}), { ['Content-Type'] = 'application/json' })
 end
 
